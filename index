@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haven Cleaning Co</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ivory: #F7F3EC;
+    --parchment: #EDE6D6;
+    --onyx: #1C1C1C;
+    --gold: #B8943F;
+    --taupe: #9C8E7E;
+    --white: #ffffff;
+  }
+  body { font-family: Georgia, serif; background: var(--ivory); color: var(--onyx); }
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; background: var(--ivory);
+    border-bottom: 1px solid var(--parchment); z-index: 100;
+    padding: 18px 40px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo { font-size: 18px; letter-spacing: 5px; font-weight: 300; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; font-family: Arial, sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--taupe); }
+  .nav-links a:hover { color: var(--onyx); }
+  .nav-cta {
+    font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    border: 1px solid var(--gold); color: var(--gold); padding: 10px 20px; cursor: pointer;
+    background: none; transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--white); }
+
+  section { padding: 100px 40px; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding-top: 120px; background: var(--ivory);
+  }
+  .hero-inner { max-width: 700px; }
+  .hero-tag { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .hero-title { font-size: clamp(42px, 8vw, 72px); font-weight: 300; letter-spacing: 8px; line-height: 1.1; margin-bottom: 16px; }
+  .hero-rule { width: 60px; height: 1px; background: var(--gold); margin: 24px auto; }
+  .hero-sub { font-family: Arial, sans-serif; font-size: 14px; color: var(--taupe); letter-spacing: 1px; line-height: 1.8; margin-bottom: 40px; }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    background: var(--onyx); color: var(--ivory); padding: 16px 32px; border: none; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold); }
+  .btn-outline {
+    font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    background: none; color: var(--onyx); padding: 16px 32px; border: 1px solid var(--onyx); cursor: pointer; transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* SERVICES */
+  #services { background: var(--white); }
+  .section-tag { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; text-align: center; }
+  .section-title { font-size: 32px; font-weight: 300; letter-spacing: 4px; text-align: center; margin-bottom: 8px; }
+  .section-rule { width: 40px; height: 1px; background: var(--gold); margin: 16px auto 48px; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; max-width: 1000px; margin: 0 auto; }
+  .service-card { padding: 40px 32px; border: 1px solid var(--parchment); background: var(--ivory); }
+  .service-icon { font-size: 24px; margin-bottom: 16px; }
+  .service-name { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+  .service-price { font-family: Arial, sans-serif; font-size: 22px; font-weight: 300; color: var(--gold); margin-bottom: 12px; }
+  .service-desc { font-family: Arial, sans-serif; font-size: 13px; color: var(--taupe); line-height: 1.7; }
+
+  /* WHY */
+  #why { background: var(--onyx); color: var(--ivory); }
+  #why .section-title { color: var(--ivory); }
+  #why .section-tag { color: var(--gold); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 900px; margin: 0 auto; }
+  .why-item { text-align: center; }
+  .why-num { font-size: 36px; font-weight: 300; color: var(--gold); letter-spacing: 2px; margin-bottom: 8px; }
+  .why-label { font-family: Arial, sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--taupe); margin-bottom: 8px; }
+  .why-desc { font-family: Arial, sans-serif; font-size: 13px; color: #9C8E7E; line-height: 1.7; }
+
+  /* BOOKING */
+  #booking { background: var(--ivory); }
+  .booking-wrap { max-width: 600px; margin: 0 auto; }
+  .form-row { margin-bottom: 20px; }
+  .form-row label { display: block; font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--taupe); margin-bottom: 8px; }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%; padding: 14px 16px; border: 1px solid var(--parchment);
+    background: var(--white); font-family: Arial, sans-serif; font-size: 14px; color: var(--onyx);
+    outline: none; transition: border-color 0.2s; appearance: none;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--gold); }
+  .form-row textarea { height: 100px; resize: vertical; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-submit {
+    width: 100%; padding: 18px; background: var(--onyx); color: var(--ivory);
+    border: none; font-family: Arial, sans-serif; font-size: 12px; letter-spacing: 3px;
+    text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--gold); }
+  .form-note { font-family: Arial, sans-serif; font-size: 12px; color: var(--taupe); text-align: center; margin-top: 16px; }
+  .success-msg { display: none; text-align: center; padding: 32px; border: 1px solid var(--gold); }
+  .success-msg h3 { font-size: 20px; font-weight: 300; letter-spacing: 3px; margin-bottom: 8px; }
+  .success-msg p { font-family: Arial, sans-serif; font-size: 13px; color: var(--taupe); }
+
+  /* CONTACT */
+  #contact { background: var(--parchment); text-align: center; }
+  .contact-grid { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-top: 40px; }
+  .contact-item { font-family: Arial, sans-serif; }
+  .contact-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .contact-val { font-size: 14px; color: var(--onyx); }
+
+  footer { background: var(--onyx); color: var(--taupe); text-align: center; padding: 32px; font-family: Arial, sans-serif; font-size: 12px; letter-spacing: 2px; }
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .hero-title { letter-spacing: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Haven <span>·</span> Cleaning Co</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#booking">Book</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Atlanta, Georgia</div>
+    <h1 class="hero-title">Haven</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Premium residential and short-term rental cleaning.<br>Detail-driven. Guest-ready. Reliable.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a Clean</button>
+      <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Services</button>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-tag">What We Offer</div>
+  <h2 class="section-title">Services</h2>
+  <div class="section-rule"></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <div class="service-name">Residential</div>
+      <div class="service-price">From $120/hr</div>
+      <div class="service-desc">Houses and apartments cleaned to a meticulous standard. Priced by size and scope.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✦</div>
+      <div class="service-name">Deep Clean</div>
+      <div class="service-price">+$60</div>
+      <div class="service-desc">Full detail clean including appliances, baseboards, and areas typically missed in standard cleans.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔑</div>
+      <div class="service-name">Airbnb Turnover</div>
+      <div class="service-price">From $120</div>
+      <div class="service-desc">Same-day availability, before and after photos, linen swap, and guest-ready presentation every time.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <div class="service-name">Host Retainer</div>
+      <div class="service-price">From $1,800/mo</div>
+      <div class="service-desc">Priority scheduling and guaranteed availability for high-volume Airbnb hosts. 4–8 turns per week.</div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="section-tag">Why Haven</div>
+  <h2 class="section-title" style="color:var(--ivory)">The Standard</h2>
+  <div class="section-rule"></div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">100%</div>
+      <div class="why-label">Photo Documentation</div>
+      <div class="why-desc">Before and after photos sent after every single clean.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">Same Day</div>
+      <div class="why-label">Turnaround</div>
+      <div class="why-desc">Available for last-minute Airbnb turnovers across Atlanta.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">5★</div>
+      <div class="why-label">Guest Ready</div>
+      <div class="why-desc">Cleaned to Airbnb Superhost standards every time.</div>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="section-tag">Get Started</div>
+  <h2 class="section-title">Book a Clean</h2>
+  <div class="section-rule"></div>
+  <div class="booking-wrap">
+    <div id="booking-form">
+      <div class="form-grid">
+        <div class="form-row">
+          <label>First Name</label>
+          <input type="text" id="fname" placeholder="Sydney">
+        </div>
+        <div class="form-row">
+          <label>Last Name</label>
+          <input type="text" id="lname" placeholder="Horton">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="you@email.com">
+      </div>
+      <div class="form-row">
+        <label>Phone</label>
+        <input type="tel" id="phone" placeholder="(404) 000-0000">
+      </div>
+      <div class="form-row">
+        <label>Service Type</label>
+        <select id="service">
+          <option value="">Select a service</option>
+          <option>Residential — 1 Bedroom House</option>
+          <option>Residential — 2 Bedroom House</option>
+          <option>Residential — 3 Bedroom House</option>
+          <option>Residential — 4+ Bedroom House</option>
+          <option>Apartment — 1 Bedroom</option>
+          <option>Apartment — 2 Bedroom</option>
+          <option>Airbnb Turnover</option>
+          <option>Deep Clean Add-On</option>
+          <option>Host Retainer — Inquiry</option>
+        </select>
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Preferred Date</label>
+          <input type="date" id="date">
+        </div>
+        <div class="form-row">
+          <label>Preferred Time</label>
+          <select id="time">
+            <option value="">Select time</option>
+            <option>8:00 AM</option>
+            <option>9:00 AM</option>
+            <option>10:00 AM</option>
+            <option>11:00 AM</option>
+            <option>12:00 PM</option>
+            <option>1:00 PM</option>
+            <option>2:00 PM</option>
+            <option>3:00 PM</option>
+            <option>4:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Address</label>
+        <input type="text" id="address" placeholder="Atlanta, GA">
+      </div>
+      <div class="form-row">
+        <label>Additional Notes</label>
+        <textarea id="notes" placeholder="Pets, access instructions, specific requests..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Request Booking</button>
+      <p class="form-note">We'll confirm your booking within 2 hours via email or phone.</p>
+    </div>
+    <div class="success-msg" id="success-msg">
+      <h3>Request Received</h3>
+      <p>Thank you. We'll be in touch within 2 hours to confirm your booking.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-tag">Reach Us</div>
+  <h2 class="section-title">Contact</h2>
+  <div class="section-rule"></div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-val">hello@havencleaningco.com</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Phone</div>
+      <div class="contact-val">(404) 000-0000</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Location</div>
+      <div class="contact-val">Atlanta, GA</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 <span>Haven Cleaning Co</span> · Atlanta, Georgia · All rights reserved
+</footer>
+
+<script>
+function submitForm() {
+  const fname = document.getElementById('fname').value;
+  const email = document.getElementById('email').value;
+  const service = document.getElementById('service').value;
+  if (!fname || !email || !service) {
+    alert('Please fill in your name, email, and service type.');
+    return;
+  }
+  document.getElementById('booking-form').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+}
+</script>
+</body>
+</html>
